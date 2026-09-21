@@ -34,7 +34,8 @@ async function repos() {
 
 (async () => {
   const lines = (await repos())
-    .filter((r) => !r.fork && !r.archived && !r.private && r.name.toLowerCase() !== user.toLowerCase())
+    // Les dépôts marqués « a-realiser » sont des guides préparés, pas du travail terminé : ils ne comptent pas comme activité.
+    .filter((r) => !r.fork && !r.archived && !r.private && r.name.toLowerCase() !== user.toLowerCase() && !(r.topics || []).includes('a-realiser'))
     .slice(0, MAX)
     .map((r) => {
       const description = r.description ? ` : ${escapeMd(short(r.description, 85))}` : '';

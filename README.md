@@ -11,6 +11,7 @@
   <a href="#projet-phare"><b>Projet phare</b></a> &nbsp;·&nbsp;
   <a href="#compétences"><b>Compétences</b></a> &nbsp;·&nbsp;
   <a href="#projets"><b>Projets</b></a> &nbsp;·&nbsp;
+  <a href="#outils-réseau-testés"><b>Outils</b></a> &nbsp;·&nbsp;
   <a href="#activité-récente"><b>Activité</b></a> &nbsp;·&nbsp;
   <a href="https://mehdiseg.github.io"><b>Portfolio</b></a>
 </p>
@@ -25,7 +26,7 @@
 
 ## Projet phare
 
-Un **serveur web complet pour un commerce** : catalogue d'articles, comptes avec droits par rôle, import Excel, alertes de réapprovisionnement, et un accès sécurisé depuis internet, sans ouvrir aucun port sur la box.
+Un **serveur web complet pour un commerce** : catalogue d'articles, comptes avec droits par rôle, import Excel, alertes de réapprovisionnement, étiquettes à codes-barres pour une douchette USB, et un accès sécurisé depuis internet, sans ouvrir aucun port sur la box. Le code est dans un dépôt privé : je le présente sur demande.
 
 ```mermaid
 flowchart LR
@@ -51,10 +52,10 @@ flowchart LR
 **Réseau et systèmes**
 - Publication en HTTPS via un tunnel, sans redirection de port : le serveur ne reçoit rien en direct.
 - Diagnostic d'un blocage réseau réel : pare-feu Windows, profils réseau public et privé, ports.
-- Démarrage automatique avec Windows par tâche planifiée, relance en cas de plantage, veille désactivée.
+- Script d'installation : tâche planifiée de démarrage automatique et veille désactivée (la validation après un redémarrage du PC reste à faire).
 
 **Qualité**
-- Neuf tests automatiques de bout en bout (connexion, droits, import Excel, sauvegarde, limitation des tentatives).
+- Dix tests automatiques de bout en bout (connexion, droits, import Excel, sauvegarde, limitation des tentatives).
 - Interface pensée d'abord pour le téléphone, testée avec un navigateur piloté par script.
 - Sauvegardes automatiques chaque jour avec rotation.
 
@@ -68,6 +69,15 @@ flowchart LR
 <br>
 
 Commutation Cisco (VLAN, trunks 802.1Q, port-security, Spanning Tree), Linux Debian (nginx, MariaDB, pare-feu UFW, SSH), Windows et PowerShell (scripts, tâches planifiées, pare-feu), HTTPS et certificats, diagnostic de connectivité, tunnels et accès distant.
+
+</details>
+
+<details>
+<summary><b>Outils réseau et sécurité (testés)</b></summary>
+
+<br>
+
+Analyse de captures avec Wireshark et tshark, audit avec Nmap, VPN WireGuard (génération et validation de configurations), PKI interne avec OpenSSL (certificats avec SAN, connexion TLS vérifiée), plan d'adressage IPv4 et VLSM, Docker Compose. Chaque outil est dans un dépôt avec ses tests : voir la section [Outils réseau testés](#outils-réseau-testés).
 
 </details>
 
@@ -100,6 +110,28 @@ Git et GitHub, tests automatisés, documentation pas à pas pour des utilisateur
 | [**Santa's Workshop**](https://github.com/mehdiseg/santas-workshop) | Outil de gestion de production de cadeaux | JavaScript |
 | [**TechShop**](https://github.com/mehdiseg/techshop) | Refonte d'un site e-commerce (projet BTS SIO) | HTML |
 
+### Outils réseau testés
+
+Chaque dépôt a des tests automatiques, rejoués à chaque `push` (pastille verte dans le dépôt).
+
+| Dépôt | En bref | Vérifié par |
+|---|---|---|
+| [**calculateur-sous-reseaux**](https://github.com/mehdiseg/calculateur-sous-reseaux) | Informations d'un réseau, découpage égal et VLSM | 14 tests |
+| [**tp-wireshark-analyse-trafic**](https://github.com/mehdiseg/tp-wireshark-analyse-trafic) | Capture synthétique et 18 exercices de filtres Wireshark | chaque réponse vérifiée avec `tshark` |
+| [**wireguard-generateur-config**](https://github.com/mehdiseg/wireguard-generateur-config) | Configuration WireGuard serveur et clients | 16 tests avec le vrai `wg` |
+| [**pki-interne-openssl**](https://github.com/mehdiseg/pki-interne-openssl) | Autorité de certification interne et certificats avec SAN | 27 vérifications, dont une vraie connexion TLS |
+| [**nmap-audit-reseau-local**](https://github.com/mehdiseg/nmap-audit-reseau-local) | Mémo Nmap et comparaison de scans | 16 tests |
+| [**homelab-docker-services**](https://github.com/mehdiseg/homelab-docker-services) | Uptime Kuma, Nginx Proxy Manager, Pi-hole | syntaxe validée (pas déployé) |
+| [**plex-serveur-multimedia**](https://github.com/mehdiseg/plex-serveur-multimedia) | Guide et Docker Compose pour un serveur Plex | syntaxe validée (guide générique) |
+| [**tailscale-funnel-serveur-maison**](https://github.com/mehdiseg/tailscale-funnel-serveur-maison) | Publier une application chez soi en HTTPS, sans redirection de port | état vérifié sur mon PC |
+
+### En préparation
+
+- **14 labs à réaliser** (routage OSPF, NAT et ACL, HSRP, EtherChannel, VPN IPsec, DHCP et DNS, reverse proxy TLS, fail2ban, Suricata, Zabbix, FreeRADIUS, pfSense, Ansible). Les guides sont écrits mais **pas encore rejoués** : chaque dépôt le dit et contient un journal à remplir.
+- **11 projets libres forkés** pour m'entraîner (Packet Tracer, netmiko, containerlab, scapy, headscale...). Ce n'est pas mon code.
+
+Tout est classé, avec le statut réel de chaque élément, dans la [**feuille de route réseau**](https://github.com/mehdiseg/roadmap-reseau-bts-sio).
+
 ### Outils
 
 <p>
@@ -116,16 +148,20 @@ Git et GitHub, tests automatisés, documentation pas à pas pour des utilisateur
   <img alt="Nginx" src="https://img.shields.io/badge/Nginx-1f2430?style=flat-square&logo=nginx&logoColor=009639">
   <img alt="Cisco" src="https://img.shields.io/badge/Cisco-1f2430?style=flat-square&logo=cisco&logoColor=1ba0d7">
   <img alt="Tailscale" src="https://img.shields.io/badge/Tailscale-1f2430?style=flat-square&logo=tailscale&logoColor=white">
+  <img alt="Python" src="https://img.shields.io/badge/Python-1f2430?style=flat-square&logo=python&logoColor=3776ab">
+  <img alt="Docker" src="https://img.shields.io/badge/Docker-1f2430?style=flat-square&logo=docker&logoColor=2496ed">
+  <img alt="Wireshark" src="https://img.shields.io/badge/Wireshark-1f2430?style=flat-square&logo=wireshark&logoColor=1679a7">
+  <img alt="WireGuard" src="https://img.shields.io/badge/WireGuard-1f2430?style=flat-square&logo=wireguard&logoColor=88171a">
 </p>
 
 ## Activité récente
 
 <!--ACTIVITE:DEBUT-->
-- **21 sept.** · [projet\_git\_demo](https://github.com/mehdiseg/projet_git_demo) : Exercice de cours sur Git : premiers commits et intégration d'une modification d'un …
-- **21 sept.** · [santas-workshop](https://github.com/mehdiseg/santas-workshop) : Santa's Workshop - outil de gestion de production de cadeaux
-- **21 sept.** · [scanner-reseau-powershell](https://github.com/mehdiseg/scanner-reseau-powershell) : Scanner de réseau local en PowerShell : appareils, MAC, ports TCP, remarques de sécu…
-- **21 sept.** · [labs-reseau-cisco](https://github.com/mehdiseg/labs-reseau-cisco) : TP de commutation Cisco : VLAN, trunks 802.1Q, port-security, SSH, Spanning Tree \(Pa…
-- **21 sept.** · [serveur-debian-lemp-securise](https://github.com/mehdiseg/serveur-debian-lemp-securise) : Serveur web Debian 13 : nginx, MariaDB, PHP-FPM et pare-feu UFW \(SSH uniquement\)
+- **21 sept.** · [mehdiseg.github.io](https://github.com/mehdiseg/mehdiseg.github.io) : Portfolio BTS SIO SISR - Mehdi Seghier
+- **21 sept.** · [roadmap-reseau-bts-sio](https://github.com/mehdiseg/roadmap-reseau-bts-sio) : Feuille de route réseau : ce qui est réalisé, ce qui est testé, ce qui reste à réali…
+- **21 sept.** · [tailscale-funnel-serveur-maison](https://github.com/mehdiseg/tailscale-funnel-serveur-maison) : Retour d'expérience : publier en HTTPS une application hébergée chez soi avec Tailsc…
+- **21 sept.** · [homelab-docker-services](https://github.com/mehdiseg/homelab-docker-services) : Homelab Docker Compose : Uptime Kuma, Nginx Proxy Manager et Pi-hole, interfaces d'a…
+- **21 sept.** · [plex-serveur-multimedia](https://github.com/mehdiseg/plex-serveur-multimedia) : Guide et Docker Compose pour un serveur Plex : organisation des fichiers, sécurité d…
 <!--ACTIVITE:FIN-->
 
 <sub>Mise à jour automatiquement chaque jour, à partir de mes dépôts publics.</sub>
