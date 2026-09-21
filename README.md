@@ -11,6 +11,7 @@
   <a href="#projet-phare"><b>Projet phare</b></a> &nbsp;·&nbsp;
   <a href="#compétences"><b>Compétences</b></a> &nbsp;·&nbsp;
   <a href="#projets"><b>Projets</b></a> &nbsp;·&nbsp;
+  <a href="#activité-récente"><b>Activité</b></a> &nbsp;·&nbsp;
   <a href="https://mehdiseg.github.io"><b>Portfolio</b></a>
 </p>
 
@@ -108,6 +109,24 @@ Git et GitHub, tests automatisés, documentation pas à pas pour des utilisateur
   <img alt="GitHub" src="https://img.shields.io/badge/GitHub-1f2430?style=flat-square&logo=github&logoColor=white">
   <img alt="Windows" src="https://img.shields.io/badge/Windows-1f2430?style=flat-square&logo=windows&logoColor=0078d4">
   <img alt="Tailscale" src="https://img.shields.io/badge/Tailscale-1f2430?style=flat-square&logo=tailscale&logoColor=white">
+</p>
+
+## Activité récente
+
+<!--ACTIVITE:DEBUT-->
+- **8 sept.** · 1 commit dans [mehdiseg.github.io](https://github.com/mehdiseg/mehdiseg.github.io)
+<!--ACTIVITE:FIN-->
+
+<sub>Mise à jour automatiquement chaque jour, à partir de mon activité publique.</sub>
+
+## Mes contributions
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mehdiseg/mehdiseg/output/snake-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/mehdiseg/mehdiseg/output/snake.svg">
+    <img alt="Un serpent qui mange mon graphique de contributions" src="https://raw.githubusercontent.com/mehdiseg/mehdiseg/output/snake-dark.svg" width="100%">
+  </picture>
 </p>
 
 ---
