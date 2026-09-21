@@ -1,6 +1,7 @@
 'use strict';
-// Met à jour la section « Activité récente » du README à partir des événements publics du compte.
-// Aucune dépendance : uniquement Node et l'API GitHub.
+// Met à jour la section « Activité récente » du README avec les dépôts publics les plus récemment modifiés.
+// On lit la liste des dépôts (à jour immédiatement) plutôt que le flux d'événements de GitHub, qui a
+// plusieurs heures de retard. Aucune dépendance : uniquement Node et l'API GitHub.
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -18,8 +19,8 @@ const escapeMd = (s) => s.replace(/[\\`*_{}\[\]<>()#+!|~]/g, '\\$&');
 const short = (s, n) => (s.length > n ? s.slice(0, n - 1) + '…' : s);
 const dateFr = (iso) => new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', timeZone: 'Europe/Paris' });
 
-async function events() {
-  const res = await fetch(`https://api.github.com/users/${user}/events/public?per_page=100`, {
+async function repos() {
+  const res = await fetch(`https://api.github.com/users/${user}/repos?sort=pushed&direction=desc&per_page=30&type=owner`, {
     headers: {
       Accept: 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28',
@@ -31,42 +32,14 @@ async function events() {
   return res.json();
 }
 
-function describe(e) {
-  const repo = e.repo.name;
-  if (repo.toLowerCase() === `${user}/${user}`.toLowerCase()) return null;
-  const link = `[${escapeMd(repo.split('/')[1])}](https://github.com/${repo})`;
-  const p = e.payload || {};
-
-  switch (e.type) {
-    case 'PushEvent': {
-      const n = p.distinct_size ?? p.size ?? (p.commits ? p.commits.length : 1);
-      const last = p.commits && p.commits.length ? p.commits[p.commits.length - 1].message.split('\n')[0] : '';
-      const text = `${n} commit${n > 1 ? 's' : ''} dans ${link}`;
-      return { key: `push:${repo}:${e.created_at.slice(0, 10)}`, text: last ? `${text} : ${escapeMd(short(last, 70))}` : text };
-    }
-    case 'CreateEvent':
-      return p.ref_type === 'repository' ? { key: `create:${repo}`, text: `Nouveau dépôt ${link}` } : null;
-    case 'ReleaseEvent':
-      return { key: `release:${repo}:${p.release?.tag_name}`, text: `Version ${escapeMd(p.release?.tag_name || '')} de ${link}` };
-    case 'PullRequestEvent':
-      return p.action === 'opened' ? { key: `pr:${repo}:${p.number}`, text: `Pull request dans ${link}` } : null;
-    case 'IssuesEvent':
-      return p.action === 'opened' ? { key: `issue:${repo}:${p.issue?.number}`, text: `Ticket ouvert dans ${link}` } : null;
-    default:
-      return null;
-  }
-}
-
 (async () => {
-  const seen = new Set();
-  const lines = [];
-  for (const e of await events()) {
-    const d = describe(e);
-    if (!d || seen.has(d.key)) continue;
-    seen.add(d.key);
-    lines.push(`- **${dateFr(e.created_at)}** · ${d.text}`);
-    if (lines.length === MAX) break;
-  }
+  const lines = (await repos())
+    .filter((r) => !r.fork && !r.archived && !r.private && r.name.toLowerCase() !== user.toLowerCase())
+    .slice(0, MAX)
+    .map((r) => {
+      const description = r.description ? ` : ${escapeMd(short(r.description, 85))}` : '';
+      return `- **${dateFr(r.pushed_at)}** · [${escapeMd(r.name)}](${r.html_url})${description}`;
+    });
 
   const block = lines.length ? lines.join('\n') : '_Pas d\'activité publique récente._';
   const readme = fs.readFileSync(README, 'utf8');

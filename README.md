@@ -121,10 +121,14 @@ Git et GitHub, tests automatisés, documentation pas à pas pour des utilisateur
 ## Activité récente
 
 <!--ACTIVITE:DEBUT-->
-- **8 sept.** · 1 commit dans [mehdiseg.github.io](https://github.com/mehdiseg/mehdiseg.github.io)
+- **21 sept.** · [projet\_git\_demo](https://github.com/mehdiseg/projet_git_demo) : Exercice de cours sur Git : premiers commits et intégration d'une modification d'un …
+- **21 sept.** · [santas-workshop](https://github.com/mehdiseg/santas-workshop) : Santa's Workshop - outil de gestion de production de cadeaux
+- **21 sept.** · [scanner-reseau-powershell](https://github.com/mehdiseg/scanner-reseau-powershell) : Scanner de réseau local en PowerShell : appareils, MAC, ports TCP, remarques de sécu…
+- **21 sept.** · [labs-reseau-cisco](https://github.com/mehdiseg/labs-reseau-cisco) : TP de commutation Cisco : VLAN, trunks 802.1Q, port-security, SSH, Spanning Tree \(Pa…
+- **21 sept.** · [serveur-debian-lemp-securise](https://github.com/mehdiseg/serveur-debian-lemp-securise) : Serveur web Debian 13 : nginx, MariaDB, PHP-FPM et pare-feu UFW \(SSH uniquement\)
 <!--ACTIVITE:FIN-->
 
-<sub>Mise à jour automatiquement chaque jour, à partir de mon activité publique.</sub>
+<sub>Mise à jour automatiquement chaque jour, à partir de mes dépôts publics.</sub>
 
 ## Mes contributions
 
