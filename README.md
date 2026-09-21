@@ -67,7 +67,7 @@ flowchart LR
 
 <br>
 
-Windows, ligne de commande PowerShell, pare-feu, tâches planifiées, HTTPS et certificats, diagnostic de connectivité, tunnels et accès distant.
+Commutation Cisco (VLAN, trunks 802.1Q, port-security, Spanning Tree), Linux Debian (nginx, MariaDB, pare-feu UFW, SSH), Windows et PowerShell (scripts, tâches planifiées, pare-feu), HTTPS et certificats, diagnostic de connectivité, tunnels et accès distant.
 
 </details>
 
@@ -93,6 +93,7 @@ Git et GitHub, tests automatisés, documentation pas à pas pour des utilisateur
 
 | Projet | En bref | Technos |
 |---|---|---|
+| [**Scanner de réseau PowerShell**](https://github.com/mehdiseg/scanner-reseau-powershell) | Découverte des appareils, ports TCP ouverts, rapport HTML et CSV | PowerShell |
 | [**Labs réseau Cisco**](https://github.com/mehdiseg/labs-reseau-cisco) | TP de commutation : VLAN, trunks 802.1Q, port-security, SSH, Spanning Tree | Cisco IOS, Packet Tracer |
 | [**Serveur Debian sécurisé**](https://github.com/mehdiseg/serveur-debian-lemp-securise) | Pile nginx, MariaDB, PHP-FPM et pare-feu UFW sur Debian 13 | Debian, nginx, UFW |
 | [**Portfolio BTS SIO**](https://github.com/mehdiseg/mehdiseg.github.io) | Mon portfolio pour le BTS SIO SISR | HTML |
@@ -110,6 +111,10 @@ Git et GitHub, tests automatisés, documentation pas à pas pour des utilisateur
   <img alt="Git" src="https://img.shields.io/badge/Git-1f2430?style=flat-square&logo=git&logoColor=f05032">
   <img alt="GitHub" src="https://img.shields.io/badge/GitHub-1f2430?style=flat-square&logo=github&logoColor=white">
   <img alt="Windows" src="https://img.shields.io/badge/Windows-1f2430?style=flat-square&logo=windows&logoColor=0078d4">
+  <img alt="PowerShell" src="https://img.shields.io/badge/PowerShell-1f2430?style=flat-square&logo=powershell&logoColor=5391fe">
+  <img alt="Debian" src="https://img.shields.io/badge/Debian-1f2430?style=flat-square&logo=debian&logoColor=d70a53">
+  <img alt="Nginx" src="https://img.shields.io/badge/Nginx-1f2430?style=flat-square&logo=nginx&logoColor=009639">
+  <img alt="Cisco" src="https://img.shields.io/badge/Cisco-1f2430?style=flat-square&logo=cisco&logoColor=1ba0d7">
   <img alt="Tailscale" src="https://img.shields.io/badge/Tailscale-1f2430?style=flat-square&logo=tailscale&logoColor=white">
 </p>
 
